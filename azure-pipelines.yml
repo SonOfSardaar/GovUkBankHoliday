@@ -40,11 +40,11 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   displayName: Create nuget package
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.nuspec'
+    packagesToPack: '**/*.csproj'
     versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
