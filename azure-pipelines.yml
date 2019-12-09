@@ -17,9 +17,12 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-- task: GitVersion@5
+
+- task: UseGitVersion@5
   inputs:
-    runtime: 'core'
+    versionSpec: '5.*'
+    updateAssemblyInfo: true
+    
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
