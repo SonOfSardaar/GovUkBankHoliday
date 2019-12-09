@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1;netcoreapp3.1</TargetFrameworks>
+    <Authors>Gurpreet Singh</Authors>
+    <Description>This is a utility to fetch a list of UK bank holidays provided by gov.uk</Description>
+    <PackageProjectUrl>https://github.com/SonOfSardaar/GovUkBankHoliday</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/SonOfSardaar/GovUkBankHoliday</RepositoryUrl>
+    <RepositoryType>Git Hub</RepositoryType>
   </PropertyGroup>
 
   <ItemGroup>
