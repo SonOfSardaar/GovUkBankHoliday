@@ -8,39 +8,47 @@ variables:
 
 steps:
 - task: NuGetToolInstaller@1
+  displayName: Install nuget tool
 
 - task: UseDotNet@2
+  displayName: Use dotnet sdk 3.x
   inputs:
     packageType: 'sdk'
     version: '3.x'
 
 - task: NuGetCommand@2
+  displayName: Restore nuget packages
   inputs:
     restoreSolution: '$(solution)'
 
 - task: UseGitVersion@5
+  displayName: Use git version
   inputs:
     versionSpec: '5.*'
     updateAssemblyInfo: false
     
 - task: VSBuild@1
+  displayName: Build solution
   inputs:
     solution: '$(solution)'
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
 - task: VSTest@2
+  displayName: Run the tests
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: DotNetCoreCLI@2
+- task: NuGetCommand@2
+  displayName: Create nuget package
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/*.nuspec'
     versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
+  displayName: Push nuget package to Nuget.Org
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
