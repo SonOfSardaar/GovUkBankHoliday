@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gov.UK.BankHolidayProvider", "Gov.UK.BankHolidayProvider\Gov.UK.BankHolidayProvider.csproj", "{E9E3FF33-1AEB-4312-B9B3-057AA39361D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GovUkBankHolidayTests", "GovUkBankHolidayTests\GovUkBankHolidayTests.csproj", "{8CC22945-8D3B-43D3-92E1-51D4FAAAA0A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{E9E3FF33-1AEB-4312-B9B3-057AA39361D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E9E3FF33-1AEB-4312-B9B3-057AA39361D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E9E3FF33-1AEB-4312-B9B3-057AA39361D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CC22945-8D3B-43D3-92E1-51D4FAAAA0A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CC22945-8D3B-43D3-92E1-51D4FAAAA0A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CC22945-8D3B-43D3-92E1-51D4FAAAA0A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CC22945-8D3B-43D3-92E1-51D4FAAAA0A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

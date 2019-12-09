@@ -6,14 +6,24 @@ using Gov.UK.BankHolidayProvider.Models;
 
 namespace Gov.UK.BankHolidayProvider.Services
 {
-    public sealed class GovDotUkBankHolidayService : IBankHolidayService
+    public sealed class GovDotUkBankHolidayService : IGovDotUkBankHolidayService
     {
+        private const string DefaultBaseUrl = "https://www.gov.uk";
+
         private readonly HttpClient _httpClient;
+
+        public GovDotUkBankHolidayService()
+        {
+            _httpClient=new HttpClient{BaseAddress=new Uri(DefaultBaseUrl)};
+        }
 
         public GovDotUkBankHolidayService(HttpClient httpClient)
         {
             _httpClient = httpClient;
-            if(_httpClient.BaseAddress==null) _httpClient.BaseAddress=new Uri("https://www.gov.uk");
+            
+            if (_httpClient.BaseAddress != null) return; 
+
+            _httpClient.BaseAddress=new Uri(DefaultBaseUrl);
         }
 
         public async Task<GovDotUkBankHolidaysResponse> GetBankHolidaysAsync()

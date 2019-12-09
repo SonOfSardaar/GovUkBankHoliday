@@ -6,7 +6,7 @@ namespace Gov.UK.BankHolidayProvider.Logic
 {
     public static class GovDotUkBankHolidaysResponseExtensions
     {
-        public static bool IsBankHoliday(this GovDotUkBankHolidaysResponse bankHolidaysResponse, RegionalDivision division, DateTime? dateTime)
+        public static bool IsBankHoliday(this GovDotUkBankHolidaysResponse bankHolidaysResponse, GovDotUkBankHolidayDivision division, DateTime? dateTime)
         {
             var fallsOnBankHoliday = bankHolidaysResponse.AllDivisionEvents.Any(x =>
             {

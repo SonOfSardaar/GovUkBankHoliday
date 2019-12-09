@@ -4,7 +4,7 @@ using Gov.UK.BankHolidayProvider.Beans;
 
 namespace Gov.UK.BankHolidayProvider.Services
 {
-    public interface IBankHolidayService
+    public interface IGovDotUkBankHolidayService
     {
         Task<GovDotUkBankHolidaysResponse> GetBankHolidaysAsync();
     }

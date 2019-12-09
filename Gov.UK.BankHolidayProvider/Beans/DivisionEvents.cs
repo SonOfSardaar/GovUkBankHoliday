@@ -6,7 +6,7 @@ namespace Gov.UK.BankHolidayProvider.Beans
     public class DivisionEvents
     {
         [JsonProperty("division")]
-        public RegionalDivision Division { get; set; }
+        public GovDotUkBankHolidayDivision Division { get; set; }
 
         [JsonProperty("events")]
         public IEnumerable<BankHolidayEvent> Events { get; set; }
