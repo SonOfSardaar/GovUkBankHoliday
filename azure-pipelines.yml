@@ -6,12 +6,13 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
+steps:
+- task: NuGetToolInstaller@1
+
 - task: UseDotNet@2
   inputs:
     packageType: 'sdk'
-    version: 
-steps:
-- task: NuGetToolInstaller@1
+    version: '3.x'
 
 - task: NuGetCommand@2
   inputs:
