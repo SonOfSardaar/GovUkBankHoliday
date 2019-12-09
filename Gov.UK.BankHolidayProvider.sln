@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GovUkBankHolidayTests", "Go
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{492FA360-C8CB-4C03-A128-3443960FD0B0}"
 	ProjectSection(SolutionItems) = preProject
+		Gov.UK.BankHolidayProvider.nuspec = Gov.UK.BankHolidayProvider.nuspec
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject

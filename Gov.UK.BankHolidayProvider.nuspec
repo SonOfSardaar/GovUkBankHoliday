@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Gov.UK.BankHolidayProvider</id>
+    <version>0.0.0</version>
+    <authors>Gurpreet Singh</authors>
+    <owners>Gurpreet Singh</owners>
+    <licenseUrl>https://github.com/SonOfSardaar/GovUkBankHoliday/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/SonOfSardaar/GovUkBankHoliday</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Utility to fetch bank holiday list from gov.uk</description>
+  </metadata>
+</package>
