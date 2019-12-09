@@ -9,10 +9,17 @@ variables:
 steps:
 - task: NuGetToolInstaller@1
 
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '3.x'
+
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
+- task: GitVersion@5
+  inputs:
+    runtime: 'core'
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
