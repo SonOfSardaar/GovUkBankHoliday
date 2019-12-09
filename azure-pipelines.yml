@@ -37,7 +37,7 @@ steps:
 - task: DotNetCoreCLI@2
   inputs:
     command: 'pack'
-    packagesToPack: '**/*.csproj'
+    packagesToPack: '**/*.nuspec'
     versioningScheme: 'byBuildNumber'
 
 - task: NuGetCommand@2
