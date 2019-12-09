@@ -12,7 +12,9 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
+- task: GitVersion@5
+  inputs:
+    runtime: 'core'
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
