@@ -2,11 +2,16 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
+- task: GitVersion@5
+  displayName: Use git version
+  inputs:
+    versionSpec: '5.*'
+    updateAssemblyInfo: false
+
 - task: NuGetToolInstaller@1
   displayName: Install nuget tool
 
@@ -20,25 +25,21 @@ steps:
   displayName: Restore nuget packages
   inputs:
     restoreSolution: '$(solution)'
-
-- task: GitVersion@5
-  displayName: Use git version
-  inputs:
-    versionSpec: '5.*'
-    updateAssemblyInfo: false
     
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   displayName: Build solution
   inputs:
-    solution: '$(solution)'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: build          
+    configuration: Release
+    buildProperties: Version=$(Build.BuildNumber)
+    projects: '**/*.csproj'
 
-- task: VSTest@2
-  displayName: Run the tests
+- task: DotNetCoreCLI@2
+  displayName: Run Tests
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: test
+    arguments: --no-build --no-restore          
+    configuration: Release
 
 - task: DotNetCoreCLI@2
   inputs:
