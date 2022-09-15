@@ -38,7 +38,7 @@ steps:
   displayName: Run Tests
   inputs:
     command: test
-    arguments: --no-build      
+    arguments: --no-build -f net6.0      
     configuration: Release
     projects: '**/*Tests.csproj'
 
