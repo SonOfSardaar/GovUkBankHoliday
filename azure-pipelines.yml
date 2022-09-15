@@ -4,7 +4,6 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  group: keys
 
 steps:
 - task: GitVersion@5
