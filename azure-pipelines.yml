@@ -11,10 +11,10 @@ steps:
   displayName: Install nuget tool
 
 - task: UseDotNet@2
-  displayName: Use dotnet sdk 3.x
+  displayName: Use dotnet sdk 6.x
   inputs:
     packageType: 'sdk'
-    version: '3.x'
+    version: '6.x'
 
 - task: NuGetCommand@2
   displayName: Restore nuget packages
