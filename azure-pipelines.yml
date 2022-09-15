@@ -21,7 +21,7 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- task: UseGitVersion@5
+- task: GitVersion@5
   displayName: Use git version
   inputs:
     versionSpec: '5.*'
