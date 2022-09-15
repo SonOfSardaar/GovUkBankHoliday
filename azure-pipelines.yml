@@ -4,6 +4,7 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  group: keys
 
 steps:
 - task: GitVersion@5
@@ -55,3 +56,4 @@ steps:
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
     publishFeedCredentials: 'Nuget Org'
+    arguments: --api-key $(nuget-api-key)
