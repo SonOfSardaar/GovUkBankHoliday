@@ -30,7 +30,6 @@ steps:
   displayName: Build solution
   inputs:
     command: build
-    arguments: --no-restore  
     configuration: Release
     buildProperties: Version=$(Build.BuildNumber)
     projects: '**/*.csproj'
@@ -39,7 +38,7 @@ steps:
   displayName: Run Tests
   inputs:
     command: test
-    arguments: --no-build --no-restore          
+    arguments: --no-build      
     configuration: Release
     projects: '**/*Tests.csproj'
 
