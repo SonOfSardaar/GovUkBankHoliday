@@ -9,7 +9,16 @@ steps:
 - checkout: self
   persistCredentials: true
 
-- template: gitversion-steps.yml
+- task: GitVersion@5
+  displayName: Use git version
+  inputs:
+    versionSpec: '5.*'
+    updateAssemblyInfo: false
+
+- pwsh: |
+    $version = "$(Build.BuildNumber)" -replace "\+", "."
+    Write-Host "##vso[build.updatebuildnumber]$version"
+  displayName: Clean Build Number
 
 - task: NuGetToolInstaller@1
   displayName: Install nuget tool
