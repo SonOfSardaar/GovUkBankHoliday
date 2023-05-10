@@ -9,11 +9,7 @@ steps:
 - checkout: self
   persistCredentials: true
 
-- task: GitVersion@5
-  displayName: Use git version
-  inputs:
-    versionSpec: '5.*'
-    updateAssemblyInfo: false
+- template: gitversion-steps.yml
 
 - task: NuGetToolInstaller@1
   displayName: Install nuget tool
