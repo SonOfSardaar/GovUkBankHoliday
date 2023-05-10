@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 variables:
   buildPlatform: 'Any CPU'
@@ -48,10 +48,27 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'byBuildNumber'
 
-- task: NuGetCommand@2
-  displayName: Push nuget package to Nuget.Org
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'external'
-    publishFeedCredentials: 'Nuget Org'
+- ${{if variables['Build.SourceBranchName'] -eq 'main'}}:
+  - task: NuGetCommand@2
+    displayName: Push nuget package to Nuget.Org
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+      nuGetFeedType: 'external'
+      publishFeedCredentials: 'Nuget Org'
+
+  - pwsh: |
+      $userEmail="$(Build.RequestedForEmail)"
+      $userName="$(Build.RequestedFor)"
+      $tag="$(Build.BuildNumber)"
+
+      git config --global user.email "$userEmail"
+      git config --global user.name "$userName"
+
+      $timeStamp = Get-Date -Format "dd MMM yyyy HH:mm"
+      $tagMessage = "Released: $timeStamp"
+            
+      git tag -a $tag -m $tagMessage
+      git push origin $tag --force
+      Write-Host "Annotated tag '$tag [$tagMessage]' pushed to remote/origin"
+    displayName: GIT Tag Release
