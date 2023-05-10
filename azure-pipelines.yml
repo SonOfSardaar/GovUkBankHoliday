@@ -63,7 +63,8 @@ steps:
       $userName="SonOfSardaar"
       $tag="$(Build.BuildNumber)"
 
-      git config --global user.email "$userEmail"
+      git config --global --add url."git@github.com:".insteadOf "https://github.com"
+      git config --global user.name "$userName"
       git config --global user.name "$userName"
 
       $timeStamp = Get-Date -Format "dd MMM yyyy HH:mm"
