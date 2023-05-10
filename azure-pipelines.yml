@@ -50,6 +50,7 @@ steps:
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: NuGetCommand@2
+    enabled: false
     displayName: Push nuget package to Nuget.Org
     inputs:
       command: 'push'
