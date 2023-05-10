@@ -59,7 +59,7 @@ steps:
 
   - pwsh: |
       $userEmail="$(Build.RequestedForEmail)"
-      $userName="$(Build.RequestedFor)"
+      $userName="SonOfSardaar"
       $tag="$(Build.BuildNumber)"
 
       git config --global user.email "$userEmail"
