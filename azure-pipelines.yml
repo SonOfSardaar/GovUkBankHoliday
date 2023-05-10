@@ -6,6 +6,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+- checkout: self
+  persistCredentials: true
+
 - task: GitVersion@5
   displayName: Use git version
   inputs:
@@ -60,12 +63,11 @@ steps:
 
   - pwsh: |
       $userEmail="$(Build.RequestedForEmail)"
-      $userName="SonOfSardaar"
+      $userName="$(Build.RequestedFor)"
       $tag="$(Build.BuildNumber)"
 
       git config --global user.email "$userEmail"
       git config --global user.name "$userName"
-      git config --global --add url."git@github.com:".insteadOf "https://github.com"
 
       $timeStamp = Get-Date -Format "dd MMM yyyy HH:mm"
       $tagMessage = "Released: $timeStamp"
