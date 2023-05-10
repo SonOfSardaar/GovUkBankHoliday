@@ -48,7 +48,7 @@ steps:
     packagesToPack: '**/*.csproj'
     versioningScheme: 'byBuildNumber'
 
-- ${{if variables['Build.SourceBranchName'] -eq 'main'}}:
+- ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: NuGetCommand@2
     displayName: Push nuget package to Nuget.Org
     inputs:
