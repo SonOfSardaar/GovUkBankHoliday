@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.1;net6.0</TargetFrameworks>
     <Authors>Gurpreet Singh</Authors>
     <Description>This is a utility to fetch a list of UK bank holidays provided by gov.uk</Description>
     <PackageProjectUrl>https://github.com/SonOfSardaar/GovUkBankHoliday</PackageProjectUrl>
