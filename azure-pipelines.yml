@@ -72,7 +72,12 @@ steps:
         -s https://api.nuget.org/v3/index.json
         -k $(API_KEY) 
 
-  - script: dotnet push -s https://api.nuget.org/v3/index.json $(Build.ArtifactStagingDirectory)/packages/*.nupkg
+  - script: >-
+      dotnet push $(Build.ArtifactStagingDirectory)/packages/*.nupkg
+      -s https://api.nuget.org/v3/index.json
+      --api-key $(API_KEY)
+    env:
+      API_KEY: $(NuGetApiKey)
   - task: DotNetCoreCLI@2
     enabled: false
     displayName: Push Nuget Package
