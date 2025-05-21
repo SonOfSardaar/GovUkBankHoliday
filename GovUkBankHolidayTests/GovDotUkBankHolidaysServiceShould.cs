@@ -3,13 +3,13 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Gov.UK.BankHolidayProvider.Services;
-using NUnit.Framework;
+using Xunit;
 
 namespace GovUkBankHolidayTests
 {
     public sealed class GovDotUkBankHolidaysServiceShould
     {
-        [Test]
+        [Fact]
         public async Task GetListOfBankHolidaysWhenNoHttpClientIsSuppliedAsync()
         {
             var service=new GovDotUkBankHolidayService();
@@ -19,7 +19,7 @@ namespace GovUkBankHolidayTests
             result.EnglandAndWales.Events.Should().NotBeEmpty();
         }
 
-        [Test]
+        [Fact]
         public async Task GetListOfBankHolidaysWhenHttpClientIsSuppliedAsync()
         {
             var service=new GovDotUkBankHolidayService(new HttpClient());
@@ -29,7 +29,7 @@ namespace GovUkBankHolidayTests
             result.EnglandAndWales.Events.Should().NotBeEmpty();
         }
 
-        [Test]
+        [Fact]
         public async Task GetListOfBankHolidaysWhenHttpClientIsSuppliedWithUrlAsync()
         {
             var service=new GovDotUkBankHolidayService(new HttpClient{BaseAddress=new Uri("https://www.gov.uk")});
