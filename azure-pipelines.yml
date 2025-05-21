@@ -52,6 +52,7 @@ steps:
     command: 'pack'
     packagesToPack: '**/*.csproj'
     versioningScheme: 'byBuildNumber'
+    packDirectory: $(Build.ArtifactStagingDirectory)/packages
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: DotNetCoreCLI@2
@@ -72,7 +73,7 @@ steps:
     displayName: Push Nuget Package
     inputs:
       command: 'push'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+      packagesToPush: $(Build.ArtifactStagingDirectory)/packages/*.nupkg
       nuGetFeedType: 'external'
       publishFeedCredentials: 'Nuget Org'
 
