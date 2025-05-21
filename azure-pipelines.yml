@@ -55,7 +55,7 @@ steps:
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: DotNetCoreCLI@2
-    enabled: true
+    enabled: false
     displayName: Push Nuget Package
     env:
       API_KEY: $(NuGetApiKey)
@@ -68,16 +68,13 @@ steps:
         -k $(API_KEY) 
 
   - task: DotNetCoreCLI@2
-    enabled: false
+    enabled: true
     displayName: Push Nuget Package
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'external'
-      feedsToUse: select
-      vstsFeed: https://api.nuget.org/v3/index.json
-      publishVstsFeed: https://api.nuget.org/v3/index.json
-      arguments: -k $(NuGetApiKey) 
+      publishFeedCredentials: 'Nuget Org'
 
   - pwsh: |
       $userEmail="$(Build.RequestedForEmail)"
