@@ -28,12 +28,7 @@ steps:
   inputs:
     packageType: 'sdk'
     version: '8.x'
-
-- task: NuGetCommand@2
-  displayName: Restore nuget packages
-  inputs:
-    restoreSolution: '$(solution)'
-    
+   
 - task: DotNetCoreCLI@2
   displayName: Build solution
   inputs:
