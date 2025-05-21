@@ -68,7 +68,7 @@ steps:
         -s https://api.nuget.org/v3/index.json
         -k $(API_KEY) 
 
-  - script: >-
+  - pwsh: >-
       dotnet push $(Build.ArtifactStagingDirectory)/packages/*.nupkg
       -s https://api.nuget.org/v3/index.json
       --api-key $(NuGetApiKey)
