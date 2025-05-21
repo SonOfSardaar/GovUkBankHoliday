@@ -71,7 +71,9 @@ steps:
   - pwsh: >-
       dotnet push $(Build.ArtifactStagingDirectory)/packages/*.nupkg
       -s https://api.nuget.org/v3/index.json
-      --api-key $(NuGetApiKey)
+      --api-key $env:API_KEY
+    env:
+      API_KEY: $(NuGetApiKey)
   - task: DotNetCoreCLI@2
     enabled: false
     displayName: Push Nuget Package
