@@ -1,5 +1,5 @@
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'ubuntu-22.04 '
 
 variables:
   buildPlatform: 'Any CPU'
@@ -55,31 +55,11 @@ steps:
     packDirectory: $(Build.ArtifactStagingDirectory)/packages
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
-  - task: DotNetCoreCLI@2
-    enabled: false
-    displayName: Push Nuget Package
-    env:
-      API_KEY: $(NuGetApiKey)
-    inputs:
-      command: custom
-      custom: nuget
-      arguments: >
-        push $(Build.ArtifactStagingDirectory)/**/*.nupkg
-        -s https://api.nuget.org/v3/index.json
-        -k $(API_KEY) 
-
-  - pwsh: >-
-      dotnet push $(Build.ArtifactStagingDirectory)/packages/*.nupkg
-      -s https://api.nuget.org/v3/index.json
-      --api-key $env:API_KEY
-    env:
-      API_KEY: $(NuGetApiKey)
-  - task: DotNetCoreCLI@2
-    enabled: false
-    displayName: Push Nuget Package
+  - task: NuGetCommand@2
+    displayName: Publish Package
     inputs:
       command: 'push'
-      packagesToPush: $(Build.ArtifactStagingDirectory)/packages/*.nupkg
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/packages/*.nupkg'
       nuGetFeedType: 'external'
       publishFeedCredentials: 'Nuget Org'
 
