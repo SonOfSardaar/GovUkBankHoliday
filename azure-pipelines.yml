@@ -4,7 +4,7 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  group: Nuget
+  group: NuGet
 
 steps:
 - checkout: self
@@ -57,13 +57,15 @@ steps:
   - task: DotNetCoreCLI@2
     enabled: true
     displayName: Push Nuget Package
+    env:
+      API_KEY: $(NuGetApiKey)
     inputs:
       command: custom
       custom: nuget
       arguments: >
         push $(Build.ArtifactStagingDirectory)/**/*.nupkg
         -s https://api.nuget.org/v3/index.json
-        -k $(NuGetApiKey) 
+        -k $(API_KEY) 
 
   - task: DotNetCoreCLI@2
     enabled: false
