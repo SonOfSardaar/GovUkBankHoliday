@@ -55,6 +55,10 @@ steps:
     packDirectory: $(Build.ArtifactStagingDirectory)/packages
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
+  - task: NuGetAuthenticate@1
+    inputs:
+      nuGetServiceConnections: 'Nuget Org'
+
   - task: DotNetCoreCLI@2
     enabled: false
     displayName: Push Nuget Package
@@ -68,8 +72,9 @@ steps:
         -s https://api.nuget.org/v3/index.json
         -k $(API_KEY) 
 
+  - script: dotnet push -s https://api.nuget.org/v3/index.json $(Build.ArtifactStagingDirectory)/packages/*.nupkg
   - task: DotNetCoreCLI@2
-    enabled: true
+    enabled: false
     displayName: Push Nuget Package
     inputs:
       command: 'push'
