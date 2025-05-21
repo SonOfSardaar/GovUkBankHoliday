@@ -55,10 +55,6 @@ steps:
     packDirectory: $(Build.ArtifactStagingDirectory)/packages
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
-  - task: NuGetAuthenticate@1
-    inputs:
-      nuGetServiceConnections: 'Nuget Org'
-
   - task: DotNetCoreCLI@2
     enabled: false
     displayName: Push Nuget Package
