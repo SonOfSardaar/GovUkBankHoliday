@@ -71,7 +71,7 @@ steps:
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'external'
       feedsToUse: select
-      publishFeedCredentials: https://api.nuget.org/v3/index.json
+      publishVstsFeed: https://api.nuget.org/v3/index.json
       arguments: -k $(NuGetApiKey) 
 
   - pwsh: |
