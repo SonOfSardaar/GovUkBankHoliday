@@ -47,6 +47,7 @@ steps:
     projects: '**/*Tests.csproj'
 
 - task: DotNetCoreCLI@2
+  displayName: Pack Nuget Package
   inputs:
     command: 'pack'
     packagesToPack: '**/*.csproj'
@@ -54,18 +55,19 @@ steps:
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: DotNetCoreCLI@2
-    enabled: false
+    enabled: true
     displayName: Push Nuget Package
     inputs:
       command: custom
       custom: nuget
       arguments: >
-        push $(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg
+        push $(Build.ArtifactStagingDirectory)/**/*.nupkg
         -s https://api.nuget.org/v3/index.json
         -k $(NuGetApiKey) 
 
   - task: DotNetCoreCLI@2
-    enabled: true
+    enabled: false
+    displayName: Push Nuget Package
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
