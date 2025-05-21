@@ -54,6 +54,7 @@ steps:
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: DotNetCoreCLI@2
+    enabled: false
     displayName: Push Nuget Package
     inputs:
       command: custom
@@ -64,12 +65,13 @@ steps:
         -k $(NuGetApiKey) 
 
   - task: DotNetCoreCLI@2
-    enabled: false
+    enabled: true
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
       nuGetFeedType: 'external'
       publishFeedCredentials: 'Nuget Org'
+      arguments: -k $(NuGetApiKey) 
 
   - pwsh: |
       $userEmail="$(Build.RequestedForEmail)"
