@@ -4,6 +4,7 @@ pool:
 variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  group: Nuget
 
 steps:
 - checkout: self
@@ -53,6 +54,17 @@ steps:
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
   - task: DotNetCoreCLI@2
+    displayName: Push Nuget Package
+    inputs:
+      command: custom
+      custom: nuget
+      arguments: >
+        push $(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg
+        -s https://api.nuget.org/v3/index.json
+        -k $(NuGetApiKey) 
+
+  - task: DotNetCoreCLI@2
+    enabled: false
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
