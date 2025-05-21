@@ -52,8 +52,7 @@ steps:
     versioningScheme: 'byBuildNumber'
 
 - ${{if eq(variables['Build.SourceBranchName'], 'main')}}:
-  - task: NuGetCommand@2
-    displayName: Push nuget package to Nuget.Org
+  - task: DotNetCoreCLI@2
     inputs:
       command: 'push'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
