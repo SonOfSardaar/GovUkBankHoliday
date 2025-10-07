@@ -12,10 +12,8 @@ namespace Gov.UK.BankHolidayProvider.Services
 
         private readonly HttpClient _httpClient;
 
-        public GovDotUkBankHolidayService()
-        {
-            _httpClient=new HttpClient{BaseAddress=new Uri(DefaultBaseUrl)};
-        }
+        public GovDotUkBankHolidayService():this(new HttpClient { BaseAddress = new Uri(DefaultBaseUrl) })
+        { }
 
         public GovDotUkBankHolidayService(HttpClient httpClient)
         {

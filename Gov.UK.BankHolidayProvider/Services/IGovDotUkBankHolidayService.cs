@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Gov.UK.BankHolidayProvider.Beans;
 
 namespace Gov.UK.BankHolidayProvider.Services

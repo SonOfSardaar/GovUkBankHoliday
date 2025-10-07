@@ -15,6 +15,6 @@ namespace Gov.UK.BankHolidayProvider.Beans
         public DivisionEvents NorthernIreland { get; set; }
 
         [JsonIgnore]
-        public IEnumerable<DivisionEvents> AllDivisionEvents => new[] { EnglandAndWales, Scotland, NorthernIreland };
+        public IEnumerable<DivisionEvents> AllDivisionEvents => [EnglandAndWales, Scotland, NorthernIreland];
     }
 }
