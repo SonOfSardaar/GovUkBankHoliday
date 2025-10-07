@@ -24,12 +24,6 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: Install nuget tool
 
-- task: UseDotNet@2
-  displayName: Use dotnet sdk 8.x
-  inputs:
-    packageType: 'sdk'
-    version: '8.x'
-   
 - task: DotNetCoreCLI@2
   displayName: Build solution
   inputs:
@@ -42,7 +36,7 @@ steps:
   displayName: Run Tests
   inputs:
     command: test
-    arguments: --no-build -f net8.0      
+    arguments: --no-build   
     configuration: Release
     projects: '**/*Tests.csproj'
 
